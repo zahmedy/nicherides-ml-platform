@@ -1,4 +1,5 @@
 # NicheRides's Machine Learning Platoform 
+Data processing, ML training, model evaluation, model registry, inference service, monitoring, retraining
 
 For start:
 
@@ -6,7 +7,8 @@ For start:
 
 - Raw data -> clean -> validate -> feature engineer 
             -> train model -> evaluate model -> save versioned model 
-            -> serve model
+            -> serve model 
+            -> log predication
 
 
 Pipelines: 
