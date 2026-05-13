@@ -96,7 +96,7 @@ def _make_model_key(value: object) -> str:
 
 
 class MakeCanonicalizer(BaseEstimator, TransformerMixin):
-    def __init__(self, min_count=2):
+    def __init__(self, min_count=30):
         self.min_count = min_count
 
     def fit(self, X, y=None):
@@ -136,7 +136,7 @@ class FilteringFeatureEngineering(BaseEstimator, TransformerMixin):
 
 
 class ModelCanonicalizer(BaseEstimator, TransformerMixin):
-    def __init__(self, min_count=2):
+    def __init__(self, min_count=10):
         self.min_count = min_count
 
     def fit(self, X, y=None):
