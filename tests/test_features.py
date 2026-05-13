@@ -99,6 +99,34 @@ class TestModelTargetEncoder(unittest.TestCase):
         self.assertAlmostEqual(transformed.loc[2, "model_te"], 21400.0, places=2)
         self.assertAlmostEqual(transformed.loc[3, "model_te"], global_mean, places=2)
 
+def test_feature_pipeline_steps_work_together(self):
+    X = pd.DataFrame({
+        "make": ["toyota", "Toyota"],
+        "model": ["camry", "rav 4"],
+        "year": [2020, 2021],
+        "engine_volume": [2.5, 2.5],
+        "engine_cylinders": [4, 4],
+        "mileage": [60000, 40000],
+    })
+    y = pd.Series([22000, 30000])
+
+    make = MakeCanonicalizer(min_count=1)
+    model = ModelCanonicalizer(min_count=1)
+    features = FeatureEngineering()
+    encoder = ModelTargetEncoder(alpha=1)
+
+    X = make.fit(X, y).transform(X)
+    X = model.fit(X, y).transform(X)
+    X = features.fit(X, y).transform(X)
+    encoder.fit(X, y)
+    X = encoder.transform(X)
+
+    self.assertIn("model_te", X.columns)
+    self.assertIn("car_age", X.columns)
+    self.assertIn("engine_displacement", X.columns)
+    self.assertIn("miles_per_year", X.columns)
+    self.assertNotIn("model", X.columns)
+
 
 if __name__ == "__main__":
     unittest.main()
