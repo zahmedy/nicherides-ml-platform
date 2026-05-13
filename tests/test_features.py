@@ -99,7 +99,7 @@ class TestModelTargetEncoder(unittest.TestCase):
         self.assertAlmostEqual(transformed.loc[2, "model_te"], 21400.0, places=2)
         self.assertAlmostEqual(transformed.loc[3, "model_te"], global_mean, places=2)
 
-def test_feature_pipeline_steps_work_together(self):
+def test_feature_pipeline_steps_work_together():
     X = pd.DataFrame({
         "make": ["toyota", "Toyota"],
         "model": ["camry", "rav 4"],
