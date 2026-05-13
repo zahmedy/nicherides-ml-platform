@@ -118,7 +118,7 @@ class MakeCanonicalizer(BaseEstimator, TransformerMixin):
         return normalized.fillna("other")
 
 
-class FilteringFeatureEngineering(BaseEstimator, TransformerMixin):
+class FeatureEngineering(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
 
