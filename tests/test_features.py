@@ -7,7 +7,8 @@ from src.features.build_features import (ModelTargetEncoder,
                                          MakeCanonicalizer, 
                                          ModelCanonicalizer,
                                          FeatureEngineering)
-from src.data.clean_data import filter_columns, filter_bad_rows, drop_more_than_4_nans
+from src.data.clean_data import drop_more_than_4_nans
+from src.data.validate_data import filter_columns, filter_bad_rows
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RAW_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "raw" / "cars_listing_testing_set.csv"
