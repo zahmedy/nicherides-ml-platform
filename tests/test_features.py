@@ -32,7 +32,7 @@ class TestFeatures(unittest.TestCase):
         X = canonicalizer.transform(self.X)
         supported_makes = [make.lower() for make in SUPPORTED_MAKES]
         X = X.query("make != 'other'")
-        self.assertTrue(X['make'].isin(supported_makes).all())
+        self.assertTrue(X['make'].str.lower().isin(supported_makes).all())
 
     def testModelCanonicalizer(self):
         canonicalizer = ModelCanonicalizer()
@@ -40,7 +40,7 @@ class TestFeatures(unittest.TestCase):
         X = canonicalizer.transform(self.X)
         supported_models = [model.lower() for model in SUPPORTED_MODELS]
         X = X.query("model != 'other'")
-        self.assertTrue(X['model'].isin(supported_models).all())
+        self.assertTrue(X['model'].str.lower().isin(supported_models).all())
 
 if __name__ == "__main__":
     unittest.main()
