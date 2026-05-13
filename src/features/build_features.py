@@ -114,7 +114,7 @@ class MakeCanonicalizer(BaseEstimator, TransformerMixin):
 
     def _canonicalize_make(self, make_series):
         make_lookup = {make.lower(): make for make in SUPPORTED_MAKES}
-        normalized = make_series.astype("string").str.strip().str.lower().map(make_lookup)
+        normalized = make_series.astype("string").str.replace(r'[^\w\s]', '', regex=True).str.strip().str.lower().map(make_lookup)
         return normalized.fillna("other")
 
 
