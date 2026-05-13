@@ -6,7 +6,7 @@ from src.data.clean_data import filter_columns, filter_bad_rows, drop_more_than_
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-RAW_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "raw" / "cars_listing.csv"
+RAW_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "raw" / "cars_listing_testing_set.csv"
 
 
 class TestFeatures(unittest.TestCase):
@@ -34,5 +34,6 @@ class TestFeatures(unittest.TestCase):
         filtered_df = drop_more_than_4_nans(self.df)
         self.assertTrue(filtered_df[filtered_df.isna().sum(axis=1) > 3].empty)
 
+    
 if __name__ == "__main__":
     unittest.main()
