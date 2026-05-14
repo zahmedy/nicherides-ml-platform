@@ -49,7 +49,13 @@ def get_data_quality_pipeline():
 
 
 # Full pipeline
-def get_model_pipeline(model=ExtraTreesRegressor(n_estimators=1000, random_state=42, n_jobs=-1)):
+def get_model_pipeline(model=ExtraTreesRegressor(
+    n_estimators=200,
+    max_depth=30,
+    min_samples_leaf=3,
+    random_state=42,
+    n_jobs=-1,
+)):
     model_pipeline = Pipeline([
         ("preprocessing_pipeline", preprocessing_pipeline),
         ("training", model)

@@ -1,5 +1,6 @@
 from sklearn.exceptions import InconsistentVersionWarning
 from pathlib import Path
+from functools import lru_cache
 import numpy as np
 import joblib
 import warnings
@@ -7,6 +8,7 @@ import warnings
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MODEL_PATH = PROJECT_ROOT / "models" / "price_model" / "v1" / "car_price_pipeline.pkl"
 
+@lru_cache(maxsize=1)
 def _load_model():
     model_path = MODEL_PATH
     if not model_path.exists():
