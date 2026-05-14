@@ -27,7 +27,7 @@ numeric_pipeline = Pipeline([
 # Preprocessing categroical features pipeline
 categorical_pipeline = Pipeline([
     ("MakeCanonicalizer", MakeCanonicalizer()),
-    ("OneHotEncoder", OneHotEncoder())
+    ("OneHotEncoder", OneHotEncoder(handle_unknown="ignore"))
 ])
 
 # Preprocessing transformer pipleine
