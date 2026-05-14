@@ -6,7 +6,7 @@ import datetime
 import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-PROCESSED_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "processed" / "app_ready.csv"
+PROCESSED_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "raw" / "app_ready.csv"
 MODEL_OUT_PATH = PROJECT_ROOT / "models" / "price_model" / "v1" / "car_price_pipeline.pkl"
 MODEL_METRICS_REPORT = PROJECT_ROOT / "reports" / "price_model_report.md"
 

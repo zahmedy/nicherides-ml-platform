@@ -11,7 +11,7 @@ from src.features.build_features import (
     ModelTargetEncoder,
     FeatureEngineering
 )
-from src.data.clean_data import drop_more_than_4_nans
+from src.data.clean_data import drop_more_than_4_nans, replace_low_price_with_avg
 from src.data.validate_data import filter_bad_rows, filter_columns
 
 categorical_features = ['make', 'color', 'body_type', 
@@ -41,6 +41,7 @@ preprocessing_pipeline = ColumnTransformer([
 
 def get_data_quality_pipeline():
     return Pipeline([
+        ("replace_low_price_with_avg", FunctionTransformer(replace_low_price_with_avg)),
         ("filter_columns", FunctionTransformer(filter_columns)),
         ("filter_bad_rows", FunctionTransformer(filter_bad_rows)),
         ("drop_more_than_4_nans", FunctionTransformer(drop_more_than_4_nans)),
