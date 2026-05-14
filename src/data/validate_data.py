@@ -9,7 +9,7 @@ def filter_columns(df):
 
 def filter_bad_rows(df):
     # remove bad data
-    df = df[(df['price'] > 500) & (df['price'] < 500000)]
+    df = df[(df['price'] > 8000) & (df['price'] < 300000)]
     df = df[(df['year'] > 1970) & (df['year'] < 2028)]
     df = df[(df['mileage'] > 1) & (df['mileage'] < 500000)]
     df = df[(df['engine_volume'] >= 1) & (df['engine_volume'] < 7)]

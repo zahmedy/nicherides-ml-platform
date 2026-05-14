@@ -122,11 +122,11 @@ def test_feature_pipeline_steps_work_together():
     encoder.fit(X, y)
     X = encoder.transform(X)
 
-    self.assertIn("model_te", X.columns)
-    self.assertIn("car_age", X.columns)
-    self.assertIn("engine_displacement", X.columns)
-    self.assertIn("miles_per_year", X.columns)
-    self.assertNotIn("model", X.columns)
+    assert "model_te" in X.columns
+    assert "car_age" in X.columns
+    assert "engine_displacement" in X.columns
+    assert "miles_per_year" in X.columns
+    assert "model" not in X.columns
 
 
 if __name__ == "__main__":

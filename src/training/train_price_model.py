@@ -3,17 +3,20 @@ from pathlib import Path
 import pandas as pd
 import joblib
 import datetime
+import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "processed" / "app_ready.csv"
 MODEL_OUT_PATH = PROJECT_ROOT / "models" / "price_model" / "v1" / "car_price_pipeline.pkl"
 MODEL_METRICS_REPORT = PROJECT_ROOT / "reports" / "price_model_report.md"
 
-from src.pipelines.car_prices_pipelines import get_model_pipeline
+from src.pipelines.car_prices_pipelines import get_data_quality_pipeline, get_model_pipeline
 from src.evaluation.evaluate_regression import get_basic_metrics, get_cross_val_scores
 
 def train():
     df = pd.read_csv(PROCESSED_DATA_PATH)
+    data_quality_pipeline = get_data_quality_pipeline()
+    df = data_quality_pipeline.fit_transform(df)
 
     # Split to train and test so no data leakage occure when target encoding the car model
     train, test = train_test_split(df, test_size=0.2, random_state=42)
@@ -25,9 +28,14 @@ def train():
     y_test = test["price"]
 
     model_pipeline = get_model_pipeline()
-    model_pipeline.fit(X_train, y_train)
 
-    y_pred = model_pipeline.predict(X_test)
+    # fix skewness
+    y_train_log = np.log1p(y_train)
+
+    model_pipeline.fit(X_train, y_train_log)
+
+    y_pred_log = model_pipeline.predict(X_test)
+    y_pred = np.expm1(y_pred_log)
 
     # basic metrics
     mae, rmse, r2, mape = get_basic_metrics(y_test, y_pred)

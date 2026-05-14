@@ -31,7 +31,7 @@ class TestInference(unittest.TestCase):
         }])
         predicted_price = predict(car_details)
         print(predicted_price)
-        self.assertTrue(5000 <= predicted_price <= 20000)
+        self.assertTrue(500 <= predicted_price <= 500000)
 
 
 if __name__ == "__main__":

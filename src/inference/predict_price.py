@@ -1,6 +1,6 @@
 from sklearn.exceptions import InconsistentVersionWarning
 from pathlib import Path
-import pandas as pd
+import numpy as np
 import joblib
 import warnings
 
@@ -21,7 +21,9 @@ def _load_model():
 
 def predict(car_details):
     model = _load_model()
-    predicted_price = model.predict(car_details)[0]
+    predicted_price_log = model.predict(car_details)[0]
+
+    predicted_price = np.expm1(predicted_price_log)
 
     if predicted_price <= 0:
         raise RuntimeError("Pricing model returned an invalid prediction.")

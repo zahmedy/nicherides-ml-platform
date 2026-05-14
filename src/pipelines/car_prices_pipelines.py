@@ -1,6 +1,6 @@
 # scikit learn
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import FunctionTransformer, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import ExtraTreesRegressor
 
@@ -11,6 +11,8 @@ from src.features.build_features import (
     ModelTargetEncoder,
     FeatureEngineering
 )
+from src.data.clean_data import drop_more_than_4_nans
+from src.data.validate_data import filter_bad_rows, filter_columns
 
 categorical_features = ['make', 'color', 'body_type', 
                         'fuel_type', 'drivetrain', 'transmission']
@@ -36,6 +38,15 @@ preprocessing_pipeline = ColumnTransformer([
     ("categorical_pipeline", categorical_pipeline, categorical_features)
 ])
 
+
+def get_data_quality_pipeline():
+    return Pipeline([
+        ("filter_columns", FunctionTransformer(filter_columns)),
+        ("filter_bad_rows", FunctionTransformer(filter_bad_rows)),
+        ("drop_more_than_4_nans", FunctionTransformer(drop_more_than_4_nans)),
+    ])
+
+
 # Full pipeline
 def get_model_pipeline(model=ExtraTreesRegressor(n_estimators=1000, random_state=42, n_jobs=-1)):
     model_pipeline = Pipeline([
@@ -43,4 +54,3 @@ def get_model_pipeline(model=ExtraTreesRegressor(n_estimators=1000, random_state
         ("training", model)
     ])
     return model_pipeline
-

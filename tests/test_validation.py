@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 from src.data.clean_data import drop_more_than_4_nans
 from src.data.validate_data import filter_columns, filter_bad_rows
+from src.pipelines.car_prices_pipelines import get_data_quality_pipeline
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -44,6 +45,67 @@ class TestDataFiltering(unittest.TestCase):
         self.assertTrue(df[df['engine_volume'] < 1].empty)
         self.assertTrue(df[df['engine_cylinders'] > 16].empty)
         self.assertTrue(df[df['engine_cylinders'] < 3].empty)
+
+
+class TestDataQualityPipeline(unittest.TestCase):
+    def test_data_quality_pipeline_runs_cleaning_and_validation(self):
+        df = pd.DataFrame([
+            {
+                "price": 10000,
+                "make": "Toyota",
+                "model": "Camry",
+                "year": 2018,
+                "body_type": "Sedan",
+                "fuel_type": "Petrol",
+                "engine_volume": 2.5,
+                "mileage": 50000,
+                "engine_cylinders": 4,
+                "transmission": "Automatic",
+                "drivetrain": "FWD",
+                "color": "White",
+                "extra_column": "ignored",
+            },
+            {
+                "price": 100,
+                "make": "Toyota",
+                "model": "Camry",
+                "year": 2018,
+                "body_type": "Sedan",
+                "fuel_type": "Petrol",
+                "engine_volume": 2.5,
+                "mileage": 50000,
+                "engine_cylinders": 4,
+                "transmission": "Automatic",
+                "drivetrain": "FWD",
+                "color": "White",
+                "extra_column": "ignored",
+            },
+            {
+                "price": 12000,
+                "make": "Toyota",
+                "model": "Camry",
+                "year": 2018,
+                "body_type": None,
+                "fuel_type": None,
+                "engine_volume": 2.5,
+                "mileage": 50000,
+                "engine_cylinders": 4,
+                "transmission": None,
+                "drivetrain": None,
+                "color": None,
+                "extra_column": "ignored",
+            },
+        ])
+
+        transformed = get_data_quality_pipeline().fit_transform(df)
+
+        self.assertEqual(transformed.columns.tolist(), [
+            "price", "make", "model", "year", "body_type",
+            "fuel_type", "engine_volume", "mileage",
+            "engine_cylinders", "transmission", "drivetrain", "color",
+        ])
+        self.assertEqual(len(transformed), 1)
+        self.assertEqual(transformed.iloc[0]["price"], 10000)
 
 if __name__ == "__main__":
     unittest.main()

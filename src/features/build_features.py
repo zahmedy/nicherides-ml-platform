@@ -132,6 +132,7 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         frame["car_age"] = (REFERENCE_YEAR - frame["year"]).clip(lower=0)
         frame["engine_displacement"] = frame["engine_volume"] * frame["engine_cylinders"]
         frame["miles_per_year"] = frame["mileage"] / frame["car_age"].replace(0, 1)
+        frame["total_wear"] = frame["car_age"] * frame["mileage"]
         return frame
 
 
