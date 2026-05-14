@@ -21,6 +21,9 @@ def predict_price(data: CarFeatures):
 
     return { "price": price }
 
+@app.get("/health")
+def health():
+    return { "ok": True }
 
 if __name__ == "__main__":
     import uvicorn
