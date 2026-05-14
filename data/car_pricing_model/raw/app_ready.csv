@@ -1498,8 +1498,8 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 6272,Hyundai,Elantra,2012.0,Sedan,Petrol,1.8,92585.0,4.0,Automatic,FWD,Black
 23104,Hyundai,Tucson,2012.0,SUV,Diesel,2.0,92457.0,4.0,Automatic,FWD,White
 11133,Toyota,Camry,2014.0,Sedan,Hybrid,2.5,111463.0,4.0,Automatic,FWD,Black
-784,Volkswagen,Jetta,2014.0,Sedan,Petrol,2.0,66883.0,4.0,Automatic,FWD,Silver
-784,Lexus,ES 350,2016.0,Sedan,Hybrid,2.5,80772.0,4.0,Automatic,FWD,Gray
+11784,Volkswagen,Jetta,2014.0,Sedan,Petrol,2.0,66883.0,4.0,Automatic,FWD,Silver
+18784,Lexus,ES 350,2016.0,Sedan,Hybrid,2.5,80772.0,4.0,Automatic,FWD,Gray
 16308,Toyota,Prius,2011.0,Hatchback,Petrol,1.8,96934.0,4.0,Automatic,FWD,Silver
 2822,Ford,Fusion,2015.0,Sedan,Hybrid,2.0,62602.0,4.0,Automatic,FWD,Green
 50767,Hyundai,Santa Fe,2016.0,SUV,Diesel,2.0,70253.0,4.0,Automatic,FWD,Gray
@@ -1716,7 +1716,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 46866,Honda,Civic,2015.0,Sedan,Petrol,1.8,15346.0,4.0,Automatic,FWD,Red
 18503,Volkswagen,Passat,2012.0,Sedan,Petrol,2.5,52817.0,4.0,Automatic,FWD,White
 16308,Ford,Focus,2017.0,Sedan,Petrol,2.0,29826.0,4.0,Automatic,FWD,Red
-627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,88480.0,4.0,Automatic,FWD,White
+14627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,88480.0,4.0,Automatic,FWD,White
 25089,Toyota,Camry,2013.0,Sedan,Hybrid,2.5,75857.0,4.0,Automatic,RWD,Black
 10663,Toyota,Aqua,2012.0,Hatchback,Hybrid,1.5,75808.0,4.0,Automatic,FWD,Red
 16621,Hyundai,Elantra,2012.0,Sedan,Petrol,1.8,113339.0,4.0,Manual,FWD,Gray
@@ -2000,9 +2000,9 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 7119,Hyundai,Sonata,2010.0,Sedan,Petrol,2.0,50486.0,4.0,Automatic,FWD,White
 18817,Toyota,Prius C,2012.0,Hatchback,Hybrid,1.5,69594.0,4.0,Automatic,FWD,Black
 39226,Hyundai,Santa Fe,2013.0,SUV,Diesel,2.0,86674.0,4.0,Automatic,FWD,Black
-627,Lexus,CT 200h,2016.0,Hatchback,Hybrid,1.8,53016.0,4.0,Automatic,FWD,Red
+15527,Lexus,CT 200h,2016.0,Hatchback,Hybrid,1.8,53016.0,4.0,Automatic,FWD,Red
 37564,Hyundai,Santa Fe,2016.0,SUV,Diesel,2.0,93947.0,4.0,Automatic,FWD,Gray
-784,Ford,Escape,2012.0,SUV,Hybrid,2.5,59248.0,4.0,Automatic,FWD,Blue
+7884,Ford,Escape,2012.0,SUV,Hybrid,2.5,59248.0,4.0,Automatic,FWD,Blue
 12074,Subaru,XV,2014.0,SUV,Hybrid,2.0,81942.0,4.0,Automatic,AWD,White
 10192,Ford,Fusion,2018.0,Sedan,Hybrid,2.0,17904.0,4.0,Automatic,FWD,Blue
 14426,Mazda,Mazda6,2013.0,Sedan,Petrol,2.5,57664.0,4.0,Automatic,FWD,Silver
@@ -2136,7 +2136,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 10976,Volkswagen,Jetta,2005.0,Sedan,Petrol,2.5,115576.0,5.0,Automatic,FWD,Blue
 39201,Toyota,RAV4,2015.0,SUV,Petrol,2.5,54681.0,4.0,Automatic,AWD,Purple
 20071,Toyota,Prius,2012.0,Hatchback,Hybrid,1.8,106379.0,4.0,Automatic,FWD,Silver
-37633,Lexus,IS 250,2015.0,Sedan,Petrol,2.5,55924.0,4.0,Automatic,RWD,Silver
+20633,Lexus,IS 250,2015.0,Sedan,Petrol,2.5,55924.0,4.0,Automatic,RWD,Silver
 6272,Honda,Fit,2012.0,Hatchback,Hybrid,1.5,87801.0,4.0,Automatic,FWD,Blue
 784,Ford,Escape,2012.0,SUV,Hybrid,2.5,59248.0,4.0,Automatic,FWD,Blue
 627,Volkswagen,Jetta,2014.0,Sedan,Diesel,2.0,61922.0,4.0,Automatic,FWD,Gray
@@ -2170,7 +2170,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 21012,Audi,A4,2013.0,Sedan,Petrol,2.0,97919.0,4.0,Automatic,AWD,Black
 22580,Mercedes-Benz,E-Class,2017.0,Sedan,Petrol,2.0,31647.0,4.0,Automatic,RWD,Black
 12231,Toyota,Aqua,2015.0,Wagon,Hybrid,1.5,622.0,4.0,Automatic,FWD,Silver
-627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,88480.0,4.0,Automatic,FWD,White
+11627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,88480.0,4.0,Automatic,FWD,White
 23414,Hyundai,Tucson,2010.0,SUV,Diesel,2.0,73402.0,4.0,Automatic,FWD,Gray
 31988,Toyota,Camry,2012.0,Sedan,Hybrid,2.5,52817.0,4.0,Automatic,FWD,Black
 23772,Hyundai,H1,2012.0,Van,Diesel,2.5,33924.0,4.0,Automatic,FWD,Gray
@@ -2448,7 +2448,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 12074,Honda,Fit,2008.0,Hatchback,Petrol,1.5,124275.0,4.0,Automatic,FWD,Orange
 17876,Toyota,Prius,2010.0,Sedan,Hybrid,1.8,87614.0,4.0,Automatic,FWD,Gold
 38894,Hyundai,Santa Fe,2014.0,SUV,Diesel,2.0,91555.0,4.0,Automatic,FWD,Gray
-627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,88480.0,4.0,Automatic,FWD,White
+13627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,88480.0,4.0,Automatic,FWD,White
 16935,Lexus,CT 200h,2015.0,Hatchback,Hybrid,1.8,58999.0,4.0,Automatic,FWD,White
 11917,Chevrolet,Cruze,2010.0,Sedan,Petrol,1.8,74565.0,4.0,Automatic,FWD,Black
 2587,Subaru,XV,2014.0,SUV,Hybrid,2.0,76722.0,4.0,Automatic,AWD,White
@@ -2477,7 +2477,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 17719,Hyundai,H1,2012.0,Van,Diesel,2.5,32685.0,4.0,Automatic,FWD,White
 24148,Ford,Escape,2010.0,SUV,Hybrid,2.5,99420.0,4.0,Automatic,AWD,Black
 1646,Hyundai,Elantra,2012.0,Sedan,Petrol,1.8,123922.0,4.0,Automatic,FWD,Red
-9565,Lexus,CT 200h,2016.0,Hatchback,Hybrid,1.8,44680.0,4.0,Automatic,FWD,White
+19565,Lexus,CT 200h,2016.0,Hatchback,Hybrid,1.8,44680.0,4.0,Automatic,FWD,White
 20385,Mitsubishi,Outlander,2011.0,SUV,Petrol,2.0,64002.0,4.0,Automatic,AWD,Blue
 3607,Toyota,Camry,2012.0,Sedan,Hybrid,2.5,97256.0,4.0,Automatic,FWD,White
 54458,Ford,Explorer,2015.0,SUV,Petrol,2.0,75780.0,4.0,Automatic,FWD,White
@@ -2549,7 +2549,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 16960,Toyota,Aqua,2013.0,Hatchback,Petrol,1.5,53688.0,4.0,Automatic,FWD,Silver
 2038,Toyota,Prius,2015.0,SUV,Hybrid,1.8,65117.0,4.0,Automatic,FWD,White
 15524,Hyundai,Tucson,2011.0,SUV,Diesel,2.0,32467.0,4.0,Automatic,FWD,Gray
-784,Toyota,Camry,2014.0,Sedan,Hybrid,2.5,63627.0,4.0,Automatic,FWD,Black
+17884,Toyota,Camry,2014.0,Sedan,Hybrid,2.5,63627.0,4.0,Automatic,FWD,Black
 25089,Lexus,HS 250h,2011.0,Sedan,Hybrid,2.5,53438.0,4.0,Automatic,FWD,Blue
 20900,Mitsubishi,Outlander,2012.0,SUV,Petrol,2.0,995.0,4.0,Automatic,AWD,Black
 39226,Hyundai,Santa Fe,2015.0,SUV,Diesel,2.0,73898.0,4.0,Automatic,FWD,White
@@ -2641,7 +2641,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 46490,Hyundai,Santa Fe,2013.0,SUV,Diesel,2.0,56061.0,4.0,Automatic,FWD,Black
 5959,Kia,Sportage,2007.0,SUV,Diesel,2.0,44222.0,4.0,Automatic,FWD,Black
 14122,Hyundai,Tucson,2011.0,SUV,Diesel,2.0,42024.0,4.0,Automatic,FWD,Silver
-1490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
+12490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
 24148,Toyota,Prius C,2015.0,Sedan,Petrol,1.5,29516.0,4.0,Automatic,FWD,Black
 21953,Toyota,RAV4,2012.0,SUV,Petrol,2.5,68041.0,4.0,Automatic,FWD,White
 7213,Hyundai,Sonata,2017.0,Sedan,Hybrid,2.0,86035.0,4.0,Automatic,FWD,Silver
@@ -2689,7 +2689,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 51965,Hyundai,Santa Fe,2016.0,SUV,Diesel,2.0,30768.0,4.0,Automatic,FWD,White
 13172,Toyota,Prius,2008.0,Hatchback,Hybrid,1.5,103645.0,4.0,Automatic,FWD,Silver
 24004,Hyundai,H1,2011.0,Van,Diesel,2.5,44927.0,4.0,Automatic,FWD,Silver
-1490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
+11490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
 12544,Ford,Focus,2014.0,Hatchback,Petrol,2.0,96961.0,4.0,Automatic,FWD,Black
 30891,Honda,Civic,2015.0,Sedan,Petrol,1.8,62546.0,4.0,Automatic,FWD,Silver
 38574,BMW,5 Series,2014.0,Sedan,Petrol,2.0,77051.0,4.0,Automatic,RWD,Silver
@@ -3016,8 +3016,8 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 5018,Chevrolet,Captiva,2007.0,SUV,Diesel,2.0,33957.0,4.0,Automatic,FWD,White
 17634,Hyundai,Tucson,2010.0,SUV,Diesel,2.0,93082.0,4.0,Automatic,FWD,Blue
 627,Mazda,CX-9,2019.0,SUV,Petrol,2.5,8815.0,4.0,Automatic,FWD,White
-706,Audi,A4,2014.0,Sedan,Petrol,2.0,100682.0,4.0,Automatic,FWD,Black
-1490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
+15706,Audi,A4,2014.0,Sedan,Petrol,2.0,100682.0,4.0,Automatic,FWD,Black
+14990,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
 20385,Toyota,Camry,2012.0,Sedan,Petrol,2.5,6214.0,6.0,Automatic,FWD,White
 38445,Hyundai,Santa Fe,2016.0,SUV,Diesel,2.0,111847.0,4.0,Automatic,FWD,Silver
 45044,Chevrolet,Captiva,2016.0,SUV,Diesel,2.0,39031.0,4.0,Automatic,FWD,Gray
@@ -3041,7 +3041,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 18826,Lexus,CT 200h,2012.0,Hatchback,Hybrid,2.0,114333.0,4.0,Automatic,FWD,Black
 6115,Lexus,ES 300,2013.0,Sedan,Hybrid,2.5,94697.0,4.0,Automatic,FWD,Silver
 19444,Toyota,Camry,2010.0,Sedan,Petrol,2.5,52817.0,6.0,Automatic,FWD,Gray
-706,Lexus,CT 200h,2011.0,Hatchback,Hybrid,1.8,72620.0,4.0,Automatic,FWD,Black
+11706,Lexus,CT 200h,2011.0,Hatchback,Hybrid,1.8,72620.0,4.0,Automatic,FWD,Black
 18481,Hyundai,Tucson,2011.0,SUV,Diesel,2.0,74064.0,4.0,Automatic,FWD,Gray
 17249,Toyota,Prius C,2014.0,Hatchback,Hybrid,1.5,39768.0,4.0,Automatic,FWD,White
 18817,Toyota,Prius,2014.0,Hatchback,Hybrid,1.8,86949.0,4.0,Automatic,FWD,White
@@ -3167,7 +3167,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 11290,Subaru,Impreza,2015.0,Sedan,Petrol,2.0,34176.0,4.0,Automatic,FWD,White
 17562,Nissan,Rogue,2015.0,SUV,Petrol,2.5,59031.0,4.0,Automatic,AWD,Silver
 14113,Toyota,Aqua,2013.0,Hatchback,Petrol,1.5,86371.0,4.0,Automatic,FWD,Silver
-862,Subaru,Forester,2017.0,SUV,Petrol,2.5,46331.0,4.0,Automatic,AWD,Gray
+8062,Subaru,Forester,2017.0,SUV,Petrol,2.5,46331.0,4.0,Automatic,AWD,Gray
 13015,Ford,Escape,2019.0,Sedan,Petrol,1.5,2678.0,4.0,Automatic,FWD,White
 56136,Mercedes-Benz,E-Class,2017.0,Sedan,Petrol,2.0,31667.0,4.0,Automatic,RWD,Black
 21012,Toyota,Prius,2012.0,Hatchback,Hybrid,1.8,48467.0,4.0,Automatic,FWD,Red
@@ -3366,7 +3366,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 21768,Chevrolet,Orlando,2012.0,SUV,Diesel,2.0,95419.0,4.0,Automatic,FWD,Gray
 13172,Ford,Escape,2009.0,SUV,Hybrid,2.5,102278.0,4.0,Automatic,FWD,Gray
 5645,Chevrolet,Captiva,2007.0,SUV,Diesel,2.0,30152.0,4.0,Automatic,FWD,Beige
-627,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,119728.0,4.0,Automatic,FWD,White
+9027,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,119728.0,4.0,Automatic,FWD,White
 10192,Lexus,ES 350,2015.0,Sedan,Hybrid,2.5,25095.0,4.0,Automatic,FWD,White
 13987,Chevrolet,Cruze,2012.0,Sedan,Diesel,2.0,111847.0,4.0,Automatic,FWD,White
 23521,Subaru,Outback,2013.0,Hatchback,Petrol,2.5,72577.0,4.0,Automatic,AWD,Beige
@@ -3386,7 +3386,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 53154,Hyundai,Santa Fe,2016.0,SUV,Diesel,2.0,58570.0,4.0,Automatic,FWD,Black
 1568,Nissan,Tiida,2009.0,Hatchback,Petrol,1.5,59031.0,4.0,Automatic,FWD,Silver
 549,Subaru,other,2019.0,Sedan,Petrol,2.0,4953.0,4.0,Automatic,AWD,Blue
-1490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
+11490,Lexus,CT 200h,2012.0,Hatchback,Hybrid,1.8,108185.0,4.0,Automatic,FWD,White
 20385,Toyota,Prius,2012.0,Sedan,Petrol,1.8,118061.0,4.0,Automatic,FWD,Blue
 15994,Toyota,Camry,2010.0,Sedan,Petrol,2.5,75186.0,4.0,Automatic,FWD,Silver
 25744,Chevrolet,Malibu,2016.0,Sedan,Petrol,2.0,70532.0,4.0,Automatic,FWD,White
@@ -3458,7 +3458,7 @@ price,make,model,year,body_type,fuel_type,engine_volume,mileage,engine_cylinders
 34340,Hyundai,Santa Fe,2015.0,SUV,Diesel,2.0,19419.0,4.0,Automatic,FWD,White
 19444,Toyota,Prius C,2013.0,Hatchback,Hybrid,1.5,6836.0,4.0,Automatic,FWD,Green
 17249,Toyota,Prius,2013.0,Sedan,Hybrid,1.8,4039.0,4.0,Automatic,FWD,Gray
-706,Lexus,CT 200h,2011.0,Hatchback,Hybrid,1.8,72620.0,4.0,Automatic,FWD,Black
+24706,Lexus,ES 350,2018.0,Sedan,Hybrid,1.8,72620.0,4.0,Automatic,FWD,Black
 13500,Toyota,Prius V,2012.0,Hatchback,Hybrid,1.8,31690.0,4.0,Automatic,FWD,White
 5331,Volkswagen,Jetta,2014.0,Sedan,Diesel,2.0,10474.0,4.0,Automatic,FWD,Black
 34497,Toyota,Camry,2015.0,Sedan,Petrol,2.5,7146.0,4.0,Automatic,FWD,Brown
