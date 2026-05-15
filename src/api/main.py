@@ -4,22 +4,17 @@ import sys
 import pandas as pd
 from fastapi import FastAPI
 
+from src.api.vin_router import router as vin_router
+from src.api.price_predict_router import router as price_predict_router
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.inference.predict_price import predict
-from src.api.schemas import CarFeatures
-
 app = FastAPI(title="Car Price Predictor API")
 
-@app.post("/predict")
-def predict_price(data: CarFeatures):
-    payload = data.model_dump() if hasattr(data, "model_dump") else data.dict()
-    price = predict(pd.DataFrame([payload]))
-
-    return { "price": price }
+app.include_router(vin_router)
+app.include_router(price_predict_router)
 
 @app.get("/health")
 def health():
