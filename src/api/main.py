@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 from fastapi import FastAPI
 
-from src.api.vin_router import router as vin_router
+from src.api.vin_detect_router import router as vin_router
 from src.api.price_predict_router import router as price_predict_router
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]

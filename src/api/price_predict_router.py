@@ -6,7 +6,7 @@ from src.api.schemas import CarFeatures
 
 router = APIRouter()
 
-@router.post("/predict")
+@router.post("/v1/price/predict")
 def predict_price(data: CarFeatures):
     payload = data.model_dump() if hasattr(data, "model_dump") else data.dict()
     price = predict(pd.DataFrame([payload]))

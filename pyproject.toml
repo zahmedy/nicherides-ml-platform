@@ -12,7 +12,11 @@ dependencies = [
   "numpy>=2.0.0",
   "pandas>=2.2.0",
   "joblib>=1.4.0",
-  "scikit-learn>=1.8.0"
+  "scikit-learn>=1.8.0",
+  "ultralytics",
+  "opencv-python",
+  "pillow",
+  "python-multipart"
 ]
 
 [tool.pytest.ini_options]

@@ -1,4 +1,8 @@
 from datetime import date
+import re
+
+VIN_REGEX = re.compile(r"[A-HJ-NPR-Z0-9]{17}")
+
 
 def filter_columns(df):
     features = ["price","make","model","year","body_type",
@@ -19,3 +23,16 @@ def filter_bad_rows(df):
     df = df[(df['engine_cylinders'] >= 3) & (df['engine_cylinders'] < 17)]
 
     return df
+
+def clean_vin(text: str) -> str | None:
+    text = text.upper()
+
+    # Remove common OCR junk
+    text = re.sub(r"[^A-Z0-9]", "", text)
+
+    matches = VIN_REGEX.findall(text)
+
+    if not matches:
+        return None
+
+    return matches[0]
