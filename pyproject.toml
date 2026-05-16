@@ -14,9 +14,9 @@ dependencies = [
   "joblib>=1.4.0",
   "scikit-learn>=1.8.0",
   "ultralytics",
-  "opencv-python",
   "pillow",
-  "python-multipart"
+  "python-multipart",
+  "pytesseract"
 ]
 
 [tool.pytest.ini_options]

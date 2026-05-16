@@ -1,5 +1,7 @@
-.env
-.vscode
 .pytest_cache
-**/__pycache__/
-*.py[cod]
+.git
+runs
+data
+notebooks
+*.pt
+*.onnx

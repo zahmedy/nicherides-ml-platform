@@ -1,14 +1,25 @@
 from fastapi import APIRouter, UploadFile, File
-from paddleocr import PaddleOCR
 import tempfile
 import os
+import pytesseract
 
 from src.pipelines.vin_pipeline import detect_vin_crop, preprocess_vin
 from src.data.validate_data import clean_vin
 
 router = APIRouter()
 
-ocr = PaddleOCR(lang="en")  # load once
+
+def run_tesseract_ocr(processed_image) -> str:
+    config = (
+        "--psm 7 "
+        "-c tessedit_char_whitelist=ABCDEFGHJKLMNPRSTUVWXYZ0123456789"
+    )
+
+    return pytesseract.image_to_string(
+        processed_image,
+        config=config
+    )
+
 
 @router.post("/v1/vin/photo")
 async def vin_from_photo(file: UploadFile = File(...)):
@@ -22,18 +33,20 @@ async def vin_from_photo(file: UploadFile = File(...)):
         crop = detect_vin_crop(image_path)
 
         if crop is None:
-            return {"success": False, "error": "VIN area not detected"}
+            return {
+                "success": False,
+                "error": "VIN area not detected"
+            }
 
         processed = preprocess_vin(crop)
 
-        result = ocr.ocr(processed, cls=True)
+        if processed is None:
+            return {
+                "success": False,
+                "error": "VIN crop preprocessing failed"
+            }
 
-        texts = []
-        for line in result[0]:
-            detected_text = line[1][0]
-            texts.append(detected_text)
-
-        raw_text = " ".join(texts)
+        raw_text = run_tesseract_ocr(processed)
         vin = clean_vin(raw_text)
 
         if not vin:
