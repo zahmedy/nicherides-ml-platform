@@ -5,9 +5,17 @@ import joblib
 import datetime
 import numpy as np
 
+from src.registry.model_registry import (
+    PRICE_MODEL_NAME,
+    get_model_path,
+    get_next_model_version,
+)
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_DATA_PATH = PROJECT_ROOT / "data" / "car_pricing_model" / "raw" / "app_ready_.csv"
-MODEL_OUT_PATH = PROJECT_ROOT / "models" / "price_model" / "v1" / "car_price_pipeline.pkl"
+MODEL_NAME = PRICE_MODEL_NAME
+MODEL_VERSION = get_next_model_version(MODEL_NAME)
+MODEL_OUT_PATH = get_model_path(MODEL_NAME, MODEL_VERSION)
 MODEL_METRICS_REPORT = PROJECT_ROOT / "reports" / "price_model_report.md"
 
 from src.pipelines.car_prices_pipelines import get_data_quality_pipeline, get_model_pipeline
@@ -53,6 +61,7 @@ def train():
         f"CV MAE: ${mae_scores.mean():,.0f}\n")
 
     # save model pipeline
+    MODEL_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(model_pipeline, MODEL_OUT_PATH)
 
 

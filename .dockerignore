@@ -16,9 +16,8 @@ tests/
 
 models/**
 !models/
-!models/price_model/
-!models/price_model/v1/
-!models/price_model/v1/car_price_pipeline.pkl
+!models/car_price_regressor/
+!models/car_price_regressor/**
 !models/VINsion/
 !models/VINsion/v1/
 !models/VINsion/v1/best.pt

@@ -1,1 +1,1 @@
-models/price_model/v1/car_price_pipeline.pkl filter=lfs diff=lfs merge=lfs -text
+models/car_price_regressor/*/model.pkl filter=lfs diff=lfs merge=lfs -text

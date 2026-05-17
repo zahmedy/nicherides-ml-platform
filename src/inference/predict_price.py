@@ -1,12 +1,18 @@
 from sklearn.exceptions import InconsistentVersionWarning
-from pathlib import Path
 from functools import lru_cache
 import numpy as np
 import joblib
 import warnings
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-MODEL_PATH = PROJECT_ROOT / "models" / "price_model" / "v1" / "car_price_pipeline.pkl"
+from src.registry.model_registry import (
+    PRICE_MODEL_NAME,
+    get_latest_model_version,
+    get_model_path,
+)
+
+MODEL_NAME = PRICE_MODEL_NAME
+MODEL_VERSION = get_latest_model_version(MODEL_NAME)
+MODEL_PATH = get_model_path(MODEL_NAME, MODEL_VERSION)
 
 @lru_cache(maxsize=1)
 def _load_model():
@@ -30,4 +36,4 @@ def predict(car_details):
     if predicted_price <= 0:
         raise RuntimeError("Pricing model returned an invalid prediction.")
     
-    return int(round(predicted_price))
+    return int(round(predicted_price)), MODEL_NAME, MODEL_VERSION

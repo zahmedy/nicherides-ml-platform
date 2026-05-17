@@ -1,12 +1,8 @@
 import unittest
-from pathlib import Path
 import pandas as pd
 
 from src.training.train_price_model import train
-from src.inference.predict_price import predict
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-MODEL_PATH = PROJECT_ROOT / "models" / "price_model" / "v1" / "car_price_pipeline.pkl"
+from src.inference.predict_price import MODEL_PATH, predict
 
 
 class TestTraining(unittest.TestCase):

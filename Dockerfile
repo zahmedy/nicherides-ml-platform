@@ -18,7 +18,7 @@ RUN pip install --no-compile --index-url https://download.pytorch.org/whl/cpu to
     && pip install --no-compile .
 
 COPY src ./src
-COPY models/price_model/v1/car_price_pipeline.pkl ./models/price_model/v1/car_price_pipeline.pkl
+COPY models/car_price_regressor ./models/car_price_regressor
 COPY models/VINsion/v1/best.pt ./models/VINsion/v1/best.pt
 
 ENV YOLO_CONFIG_DIR=/tmp \
