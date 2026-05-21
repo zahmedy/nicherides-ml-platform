@@ -1,0 +1,32 @@
+name: nicherides-ml-platform
+
+services:
+  inference-api:
+    build: .
+  mlflow-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${MLFLOW_DB_NAME:-mlflow}
+      POSTGRES_USER: ${MLFLOW_DB_USER:-mlflow}
+      POSTGRES_PASSWORD: ${MLFLOW_DB_PASSWORD:-change-me}
+    ports:
+      - "${MLFLOW_DB_BIND_ADDR:-127.0.0.1}:${MLFLOW_DB_PORT:-5432}:5432"
+    volumes:
+      - mlflow-db-data:/var/lib/postgresql/data
+    mem_limit: ${MLFLOW_DB_MEM_LIMIT:-256m}
+    command:
+      - postgres
+      - -c
+      - shared_buffers=32MB
+      - -c
+      - effective_cache_size=128MB
+      - -c
+      - work_mem=2MB
+      - -c
+      - maintenance_work_mem=16MB
+      - -c
+      - max_connections=10
+
+volumes:
+  mlflow-db-data:
