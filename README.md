@@ -51,6 +51,9 @@ pip install -e ".[mlflow]"
 Run the UI locally:
 
 ```bash
+export MLFLOW_SQLALCHEMYSTORE_POOL_SIZE=2
+export MLFLOW_SQLALCHEMYSTORE_MAX_OVERFLOW=1
+
 mlflow ui \
   --backend-store-uri postgresql+psycopg2://mlflow:change-me@127.0.0.1:15432/mlflow \
   --default-artifact-root file://$PWD/mlartifacts \
@@ -69,6 +72,9 @@ Use a real S3-compatible artifact root when runs need to be shared across
 machines:
 
 ```bash
+export MLFLOW_SQLALCHEMYSTORE_POOL_SIZE=2
+export MLFLOW_SQLALCHEMYSTORE_MAX_OVERFLOW=1
+
 mlflow ui \
   --backend-store-uri postgresql+psycopg2://mlflow:change-me@127.0.0.1:15432/mlflow \
   --default-artifact-root s3://YOUR_BUCKET/mlflow-artifacts \
@@ -81,6 +87,14 @@ For local training while the UI is running:
 
 ```bash
 export MLFLOW_TRACKING_URI=http://127.0.0.1:5000
+```
+
+If Postgres reports `too many clients already`, stop duplicate local MLflow UI
+processes and recreate the small DB container:
+
+```bash
+pkill -f "mlflow ui" || true
+docker compose up -d --force-recreate mlflow-db
 ```
 
 ## Inference API
