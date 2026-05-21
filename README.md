@@ -96,3 +96,20 @@ The API is exposed on:
 ```text
 http://localhost:8001
 ```
+
+If another Docker container calls this API through the host, use:
+
+```text
+PRICE_PREDICTION_API_URL=http://host.docker.internal:8001/v1/price/predict
+VIN_SCAN_API_URL=http://host.docker.internal:8001/v1/vin/photo
+```
+
+On Linux, add this to that other container so `host.docker.internal` resolves:
+
+```yaml
+extra_hosts:
+  - "host.docker.internal:host-gateway"
+```
+
+Keep port `8001` closed in the Lightsail firewall unless this API should be
+public.

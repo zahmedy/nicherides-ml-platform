@@ -4,7 +4,7 @@ services:
   inference-api:
     build: .
     ports:
-      - "${INFERENCE_API_BIND_ADDR:-127.0.0.1}:${INFERENCE_API_PORT:-8001}:8001"
+      - "${INFERENCE_API_BIND_ADDR:-0.0.0.0}:${INFERENCE_API_PORT:-8001}:8001"
   mlflow-db:
     image: postgres:16-alpine
     restart: unless-stopped
