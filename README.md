@@ -82,3 +82,17 @@ For local training while the UI is running:
 ```bash
 export MLFLOW_TRACKING_URI=http://127.0.0.1:5000
 ```
+
+## Inference API
+
+Run the API container locally:
+
+```bash
+docker compose up -d inference-api
+```
+
+The API is exposed on:
+
+```text
+http://localhost:8001
+```
