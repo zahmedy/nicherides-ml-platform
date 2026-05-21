@@ -39,7 +39,7 @@ docker compose logs -f mlflow-db
 Keep Postgres bound to `127.0.0.1` on the VM and connect through SSH:
 
 ```bash
-ssh -N -L 5432:127.0.0.1:5432 ubuntu@YOUR_LIGHTSAIL_IP
+ssh -N -L 15432:127.0.0.1:15432 ubuntu@YOUR_LIGHTSAIL_IP
 ```
 
 On your laptop, install the local MLflow extras:
@@ -52,7 +52,7 @@ Run the UI locally:
 
 ```bash
 mlflow ui \
-  --backend-store-uri postgresql+psycopg2://mlflow:change-me@127.0.0.1:5432/mlflow \
+  --backend-store-uri postgresql+psycopg2://mlflow:change-me@127.0.0.1:15432/mlflow \
   --default-artifact-root file://$PWD/mlartifacts \
   --host 127.0.0.1 \
   --port 5000 \
@@ -70,7 +70,7 @@ machines:
 
 ```bash
 mlflow ui \
-  --backend-store-uri postgresql+psycopg2://mlflow:change-me@127.0.0.1:5432/mlflow \
+  --backend-store-uri postgresql+psycopg2://mlflow:change-me@127.0.0.1:15432/mlflow \
   --default-artifact-root s3://YOUR_BUCKET/mlflow-artifacts \
   --host 127.0.0.1 \
   --port 5000 \

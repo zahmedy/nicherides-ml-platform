@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: ${MLFLOW_DB_USER:-mlflow}
       POSTGRES_PASSWORD: ${MLFLOW_DB_PASSWORD:-change-me}
     ports:
-      - "${MLFLOW_DB_BIND_ADDR:-127.0.0.1}:${MLFLOW_DB_PORT:-7531}:7531"
+      - "${MLFLOW_DB_BIND_ADDR:-127.0.0.1}:${MLFLOW_DB_PORT:-15432}:5432"
     volumes:
       - mlflow-db-data:/var/lib/postgresql/data
     mem_limit: ${MLFLOW_DB_MEM_LIMIT:-256m}
