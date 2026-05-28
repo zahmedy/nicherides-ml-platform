@@ -25,7 +25,7 @@ class TestInference(unittest.TestCase):
             "drivetrain": "FWD",
             "color": "White"
         }])
-        predicted_price = predict(car_details)
+        predicted_price = predict(car_details)[0]
         print(predicted_price)
         self.assertTrue(500 <= predicted_price <= 500000)
 

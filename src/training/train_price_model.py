@@ -1,9 +1,12 @@
 from sklearn.model_selection import train_test_split
 from pathlib import Path
+from numpy import savetxt
+import mlflow
 import pandas as pd
 import joblib
 import datetime
 import numpy as np
+import os
 
 from src.registry.model_registry import (
     PRICE_MODEL_NAME,
@@ -26,44 +29,65 @@ def train():
     data_quality_pipeline = get_data_quality_pipeline()
     df = data_quality_pipeline.fit_transform(df)
 
-    # Split to train and test so no data leakage occure when target encoding the car model
-    train, test = train_test_split(df, test_size=0.2, random_state=42)
+    mlflow.set_experiment("price-prediction")
+    mlflow.set_registry_uri("http://127.0.0.1:5000")
+    with mlflow.start_run():
+        # Split to train and test so no data leakage occure when target encoding the car model
+        train, test = train_test_split(df, test_size=0.2, random_state=42)
 
-    X_train = train.drop("price", axis=1)
-    y_train = train["price"]
+        X_train = train.drop("price", axis=1)
+        y_train = train["price"]
 
-    X_test = test.drop("price", axis=1)
-    y_test = test["price"]
+        X_test = test.drop("price", axis=1)
+        y_test = test["price"]
 
-    model_pipeline = get_model_pipeline()
+        model_pipeline = get_model_pipeline()
 
-    # fix skewness
-    y_train_log = np.log1p(y_train)
+        training_model = model_pipeline["training"]
 
-    model_pipeline.fit(X_train, y_train_log)
+        mlflow.log_param("num_trees", training_model.n_estimators)
+        mlflow.log_param("maxdepth", training_model.max_depth)
+        mlflow.log_param("min_sample_leaf", training_model.min_samples_leaf)
 
-    y_pred_log = model_pipeline.predict(X_test)
-    y_pred = np.expm1(y_pred_log)
+        mlflow.sklearn.log_model(training_model, 'ExtraTreesRegressor')
 
-    # basic metrics
-    mae, rmse, r2, mape = get_basic_metrics(y_test, y_pred)
+        # fix skewness
+        y_train_log = np.log1p(y_train)
 
-    # get cross validation
-    mae_scores = get_cross_val_scores(model_pipeline, X_train, y_train)
-    
-    with open(MODEL_METRICS_REPORT, "a") as f:
-        f.write(
-        f"DATE: {datetime.datetime.now()} "
-        f"MAE: ${mae:,.0f} "
-        f"RMSE: ${rmse:,.0f} "
-        f"R^2: {r2:.3f} "
-        f"MAPE: {mape:.2f}% "
-        f"CV MAE: ${mae_scores.mean():,.0f}\n")
+        model_pipeline.fit(X_train, y_train_log)
 
-    # save model pipeline
-    MODEL_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    joblib.dump(model_pipeline, MODEL_OUT_PATH)
+        y_pred_log = model_pipeline.predict(X_test)
+        y_pred = np.expm1(y_pred_log)
 
+        savetxt('predictions.csv', y_pred, delimiter=',')
+        mlflow.log_artifact('predictions.csv')
+
+        # basic metrics
+        mae, rmse, r2, mape = get_basic_metrics(y_test, y_pred)
+
+        # get cross validation
+        mae_scores = get_cross_val_scores(model_pipeline, X_train, y_train)
+        
+        with open(MODEL_METRICS_REPORT, "a") as f:
+            f.write(
+            f"DATE: {datetime.datetime.now()} "
+            f"MAE: ${mae:,.0f} "
+            f"RMSE: ${rmse:,.0f} "
+            f"R^2: {r2:.3f} "
+            f"MAPE: {mape:.2f}% "
+            f"CV MAE: ${mae_scores.mean():,.0f}\n")
+
+        # log to MLFLOW
+        mlflow.log_metric("mae", mae)
+        mlflow.log_metric("rmse", rmse)
+        mlflow.log_metric("r2", r2)
+        mlflow.log_metric("mape", mape)
+        mlflow.log_metric("CV mae", mae_scores.mean())
+
+        # save model pipeline
+        MODEL_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+        joblib.dump(model_pipeline, MODEL_OUT_PATH)
+        os.remove('predictions.csv')
 
 if __name__ == "__main__":
     train()
