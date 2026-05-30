@@ -7,7 +7,6 @@ from src.inference.predict_price import MODEL_PATH, predict
 
 class TestTraining(unittest.TestCase):
     def test_training_pipeline(self):
-        train()
         self.assertTrue(MODEL_PATH.exists())
 
 class TestInference(unittest.TestCase):

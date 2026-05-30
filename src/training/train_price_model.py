@@ -29,8 +29,10 @@ def train():
     data_quality_pipeline = get_data_quality_pipeline()
     df = data_quality_pipeline.fit_transform(df)
 
+
     mlflow.set_experiment("price-prediction")
     mlflow.set_registry_uri("http://127.0.0.1:5000")
+    mlflow.set_tracking_uri("http://127.0.0.1:5000")
     with mlflow.start_run():
         # Split to train and test so no data leakage occure when target encoding the car model
         train, test = train_test_split(df, test_size=0.2, random_state=42)
@@ -42,19 +44,23 @@ def train():
         y_test = test["price"]
 
         model_pipeline = get_model_pipeline()
-
         training_model = model_pipeline["training"]
 
         mlflow.log_param("num_trees", training_model.n_estimators)
         mlflow.log_param("maxdepth", training_model.max_depth)
         mlflow.log_param("min_sample_leaf", training_model.min_samples_leaf)
 
-        mlflow.sklearn.log_model(training_model, 'ExtraTreesRegressor')
-
         # fix skewness
         y_train_log = np.log1p(y_train)
 
         model_pipeline.fit(X_train, y_train_log)
+
+        # register with mlflow
+        mlflow.sklearn.log_model(
+            sk_model=model_pipeline, 
+            input_example=X_test,
+            registered_model_name='price-prediction-pipeline'
+            )
 
         y_pred_log = model_pipeline.predict(X_test)
         y_pred = np.expm1(y_pred_log)
