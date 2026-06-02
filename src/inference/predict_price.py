@@ -3,6 +3,7 @@ from functools import lru_cache
 import numpy as np
 import joblib
 import warnings
+import mlflow.pyfunc
 
 from src.registry.model_registry import (
     PRICE_MODEL_NAME,
@@ -23,7 +24,13 @@ def _load_model():
     
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", InconsistentVersionWarning)
-        model = joblib.load(model_path, mmap_mode="r")
+        model_name = "price-prediction-pipeline"
+
+        # Load a specific version
+        model_uri = f"models:/{model_name}/1"
+        mlflow.set_registry_uri("http://127.0.0.1:5000")
+        model = mlflow.pyfunc.load_model(model_uri=model_uri)
+        #model = joblib.load(model_path, mmap_mode="r")
 
     return model
 
