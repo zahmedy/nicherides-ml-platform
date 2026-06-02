@@ -60,6 +60,7 @@ def train():
         f.seek(0)
         content = f.read()
         metrcis = content.splitlines()[-1]
+        register = False
 
         last_mae = metrcis.split()[4]
         last_rmse = metrcis.split()[6]
@@ -68,56 +69,60 @@ def train():
         last_cv_mae = metrcis.split()[-1]
 
         # new metrics is better save model 
-        if float(last_mae.replace('$', '').replace(',', '')) < mae \
-            and float(last_mape.replace('$', '').replace(',', '')) < mape \
+        if float(last_mae.replace('$', '').replace(',', '')) > mae \
+            and float(last_mape.replace('%', '')) > mape \
             and float(last_r2) < r2:
-            f.write(
-            f"DATE: {datetime.datetime.now()} "
-            f"MAE: ${mae:,.0f} "
-            f"RMSE: ${rmse:,.0f} "
-            f"R^2: {r2:.3f} "
-            f"MAPE: {mape:.2f}% "
-            f"CV MAE: ${mae_scores.mean():,.0f}\n")
+            register = True
 
-            # register with mlflow
-            mlflow.set_experiment("price-prediction")
-            mlflow.set_registry_uri("http://127.0.0.1:5000")
-            mlflow.set_tracking_uri("http://127.0.0.1:5000")
-            with mlflow.start_run():
-                mlflow.log_param("num_trees", training_model.n_estimators)
-                mlflow.log_param("maxdepth", training_model.max_depth)
-                mlflow.log_param("min_sample_leaf", training_model.min_samples_leaf)
 
+         # register with mlflow
+        mlflow.set_tracking_uri("http://127.0.0.1:5000")
+        mlflow.set_registry_uri("http://127.0.0.1:5000")
+        mlflow.set_experiment("price-prediction")
+        with mlflow.start_run():
+            mlflow.log_param("num_trees", training_model.n_estimators)
+            mlflow.log_param("maxdepth", training_model.max_depth)
+            mlflow.log_param("min_sample_leaf", training_model.min_samples_leaf)
+
+            savetxt('predictions.csv', y_pred, delimiter=',')
+            mlflow.log_artifact('predictions.csv')
+
+            # log to MLFLOW
+            mlflow.log_metric("mae", mae)
+            mlflow.log_metric("rmse", rmse)
+            mlflow.log_metric("r2", r2)
+            mlflow.log_metric("mape", mape)
+            mlflow.log_metric("CV mae", mae_scores.mean())
+
+            os.remove('predictions.csv')
+
+            if register:
                 mlflow.sklearn.log_model(
                     sk_model=model_pipeline, 
                     input_example=X_test,
-                    registered_model_name='price-prediction-pipeline'
-                )
+                    registered_model_name='price-prediction-pipeline')
 
-                savetxt('predictions.csv', y_pred, delimiter=',')
-                mlflow.log_artifact('predictions.csv')
-
-                # log to MLFLOW
-                mlflow.log_metric("mae", mae)
-                mlflow.log_metric("rmse", rmse)
-                mlflow.log_metric("r2", r2)
-                mlflow.log_metric("mape", mape)
-                mlflow.log_metric("CV mae", mae_scores.mean())
+                f.write(
+                f"DATE: {datetime.datetime.now()} "
+                f"MAE: ${mae:,.0f} "
+                f"RMSE: ${rmse:,.0f} "
+                f"R^2: {r2:.3f} "
+                f"MAPE: {mape:.2f}% "
+                f"CV MAE: ${mae_scores.mean():,.0f}\n")
 
                 # save model pipeline
                 MODEL_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
                 joblib.dump(model_pipeline, MODEL_OUT_PATH)
-                os.remove('predictions.csv')
-        else:
-            print(f"Training finished: ignorning as metrics are worse than or equal last run.")
-            print(f"Old metrcis: {metrcis}")
-            print(f"New metrics: "
-                                f"DATE: {datetime.datetime.now()} "
-                                f"MAE: ${mae:,.0f} "
-                                f"RMSE: ${rmse:,.0f} "
-                                f"R^2: {r2:.3f} "
-                                f"MAPE: {mape:.2f}% "
-                                f"CV MAE: ${mae_scores.mean():,.0f}\n")
+            else:
+                print(f"Training finished: ignorning as metrics are worse than or equal last run.")
+                print(f"Old metrcis: {metrcis}")
+                print(f"New metrics: "
+                                    f"DATE: {datetime.datetime.now()} "
+                                    f"MAE: ${mae:,.0f} "
+                                    f"RMSE: ${rmse:,.0f} "
+                                    f"R^2: {r2:.3f} "
+                                    f"MAPE: {mape:.2f}% "
+                                    f"CV MAE: ${mae_scores.mean():,.0f}\n")
 
 
 if __name__ == "__main__":
