@@ -11,7 +11,8 @@ dependencies = [
   "scikit-learn>=1.8.0",
   "ultralytics",
   "python-multipart",
-  "pytesseract"
+  "pytesseract",
+  "mlflow"
 ]
 
 [project.optional-dependencies]
