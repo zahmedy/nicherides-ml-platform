@@ -50,7 +50,7 @@ def get_data_quality_pipeline():
 
 # Full pipeline
 def get_model_pipeline(model=ExtraTreesRegressor(
-    n_estimators=200,
+    n_estimators=220,
     max_depth=30,
     min_samples_leaf=3,
     random_state=42,

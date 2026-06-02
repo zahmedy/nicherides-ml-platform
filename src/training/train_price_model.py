@@ -59,20 +59,27 @@ def train():
     with open(MODEL_METRICS_REPORT, "a+") as f:
         f.seek(0)
         content = f.read()
-        metrcis = content.splitlines()[-1]
+        lines = content.splitlines()
+
         register = False
 
-        last_mae = metrcis.split()[4]
-        last_rmse = metrcis.split()[6]
-        last_r2 = metrcis.split()[8]
-        last_mape = metrcis.split()[10]
-        last_cv_mae = metrcis.split()[-1]
+        if not lines:
+            register =True
+            metrcis = None
+        else:
+            metrcis = lines[-1]
 
-        # new metrics is better save model 
-        if float(last_mae.replace('$', '').replace(',', '')) > mae \
-            and float(last_mape.replace('%', '')) > mape \
-            and float(last_r2) < r2:
-            register = True
+            last_mae = metrcis.split()[4]
+            last_rmse = metrcis.split()[6]
+            last_r2 = metrcis.split()[8]
+            last_mape = metrcis.split()[10]
+            last_cv_mae = metrcis.split()[-1]
+
+            # new metrics is better save model 
+            if float(last_mae.replace('$', '').replace(',', '')) > mae \
+                and float(last_mape.replace('%', '')) > mape \
+                or float(last_r2) < r2:
+                register = True
 
 
          # register with mlflow
