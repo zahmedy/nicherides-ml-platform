@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: nicherides-ml-api
+Version: 0.1.0
+Requires-Python: >=3.11
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn>=0.30.0
+Requires-Dist: numpy>=2.0.0
+Requires-Dist: pandas>=2.2.0
+Requires-Dist: joblib>=1.4.0
+Requires-Dist: scikit-learn>=1.8.0
+Requires-Dist: ultralytics
+Requires-Dist: python-multipart
+Requires-Dist: pytesseract
+Requires-Dist: mlflow
+Provides-Extra: mlflow
+Requires-Dist: mlflow==3.12.0; extra == "mlflow"
+Requires-Dist: psycopg2-binary>=2.9.10; extra == "mlflow"
+Requires-Dist: boto3>=1.34.0; extra == "mlflow"

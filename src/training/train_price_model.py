@@ -85,7 +85,7 @@ def train():
          # register with mlflow
         mlflow.set_tracking_uri("http://127.0.0.1:5000")
         mlflow.set_registry_uri("http://127.0.0.1:5000")
-        mlflow.set_experiment("price-prediction")
+        mlflow.set_experiment("price-prediction-s3")
         with mlflow.start_run():
             mlflow.log_param("num_trees", training_model.n_estimators)
             mlflow.log_param("maxdepth", training_model.max_depth)
