@@ -105,7 +105,8 @@ def train():
 
             if register:
                 mlflow.sklearn.log_model(
-                    sk_model=model_pipeline, 
+                    sk_model=model_pipeline,
+                    name="ExtraTree-price-model",
                     input_example=X_test,
                     registered_model_name='price-prediction-pipeline')
 

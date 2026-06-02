@@ -27,7 +27,7 @@ def _load_model():
         model_name = "price-prediction-pipeline"
 
         # Load a specific version
-        model_uri = f"models:/{model_name}/5"
+        model_uri = f"models:/{model_name}/latest"
         mlflow.set_registry_uri("http://127.0.0.1:5000")
         model = mlflow.pyfunc.load_model(model_uri=model_uri)
         #model = joblib.load(model_path, mmap_mode="r")
