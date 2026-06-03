@@ -83,8 +83,9 @@ def train():
 
 
          # register with mlflow
-        mlflow.set_tracking_uri("http://127.0.0.1:5000")
-        mlflow.set_registry_uri("http://127.0.0.1:5000")
+        mlflow_uri = os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
+        mlflow.set_tracking_uri(mlflow_uri)
+        mlflow.set_registry_uri(mlflow_uri)
         mlflow.set_experiment("price-prediction-s3")
         with mlflow.start_run():
             mlflow.log_param("num_trees", training_model.n_estimators)

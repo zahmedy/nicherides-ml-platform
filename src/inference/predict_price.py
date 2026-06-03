@@ -30,7 +30,7 @@ def _load_model():
 
         model_name = "price-prediction-pipeline"
 
-        mlflow_uri = os.environ["MLFLOW_TRACKING_URI"]
+        mlflow_uri = os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
         mlflow.set_tracking_uri(mlflow_uri)
         mlflow.set_registry_uri(mlflow_uri)
         
