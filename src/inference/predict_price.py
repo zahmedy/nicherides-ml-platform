@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import warnings
 import mlflow.pyfunc
+import os
 
 from src.registry.model_registry import (
     PRICE_MODEL_NAME,
@@ -17,18 +18,23 @@ MODEL_PATH = get_model_path(MODEL_NAME, MODEL_VERSION)
 
 @lru_cache(maxsize=1)
 def _load_model():
-    model_path = MODEL_PATH
-    if not model_path.exists():
-        detail = f"Pricing pipeline not found at {MODEL_PATH}."
-        raise RuntimeError(detail)
+    # model_path = MODEL_PATH
+    # if not model_path.exists():
+    #     detail = f"Pricing pipeline not found at {MODEL_PATH}."
+    #     raise RuntimeError(detail)
     
+    
+
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", InconsistentVersionWarning)
+
         model_name = "price-prediction-pipeline"
 
-        # Load a specific version
+        mlflow_uri = os.environ["MLFLOW_TRACKING_URI"]
+        mlflow.set_tracking_uri(mlflow_uri)
+        mlflow.set_registry_uri(mlflow_uri)
+        
         model_uri = f"models:/{model_name}/latest"
-        mlflow.set_registry_uri("http://127.0.0.1:5000")
         model = mlflow.pyfunc.load_model(model_uri=model_uri)
         #model = joblib.load(model_path, mmap_mode="r")
 

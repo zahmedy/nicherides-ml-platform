@@ -12,7 +12,8 @@ dependencies = [
   "ultralytics",
   "python-multipart",
   "pytesseract",
-  "mlflow"
+  "mlflow",
+  "boto3"
 ]
 
 [project.optional-dependencies]
