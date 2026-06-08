@@ -26,4 +26,4 @@ ENV YOLO_CONFIG_DIR=/tmp \
 
 EXPOSE 8001
 
-CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8080"]
