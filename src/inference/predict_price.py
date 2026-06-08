@@ -22,21 +22,28 @@ def _load_model():
     # if not model_path.exists():
     #     detail = f"Pricing pipeline not found at {MODEL_PATH}."
     #     raise RuntimeError(detail)
-    
-    
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", InconsistentVersionWarning)
 
-        model_name = "price-prediction-pipeline"
+        os.environ["AWS_PROFILE"] = "nicherides"
+        os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
-        mlflow_uri = os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
-        mlflow.set_tracking_uri(mlflow_uri)
-        mlflow.set_registry_uri(mlflow_uri)
+        model_uri = (
+            "s3://nicherides/mlflow-artifacts/1/models/"
+            "m-b16472537faa4daf8ea86fe02d4d8d27/artifacts"
+        )
+
+        # model_name = "price-prediction-pipeline"
+
+        # mlflow_uri = os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
+        # mlflow.set_tracking_uri(mlflow_uri)
+        # mlflow.set_registry_uri(mlflow_uri)
         
-        model_uri = f"models:/{model_name}/latest"
-        model = mlflow.pyfunc.load_model(model_uri=model_uri)
+        # model_uri = f"models:/{model_name}/latest"
+        # model = mlflow.pyfunc.load_model(model_uri=model_uri)
         #model = joblib.load(model_path, mmap_mode="r")
+        model = mlflow.sklearn.load_model(model_uri)
 
     return model
 
